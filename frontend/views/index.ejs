@@ -10,7 +10,9 @@
     <div>
       <% if (tasks) { %>
         <% tasks.forEach(task => { %>
-          <p><%= task.name %> - <%= task.createdBy %></p>
+          <h1><%= task.name %></h1>
+          <hr>
+          <p><%= task.note %></p>
         <% }) %>
       <% } else { %>
         <p>No Tasks</p>
