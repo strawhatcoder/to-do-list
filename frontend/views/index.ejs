@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
     <title>To Do</title>
   </head>
 
@@ -24,7 +25,9 @@
         <% tasks.forEach(task => { %>
           <hr>
           <div class="task">
-            <h3 class="task__name"><%= task.name %></h3>
+            <a href="/tasks/<%= task._id %>">
+              <h3 class="task__name"><%= task.name %></h3>
+            </a>
             <p class="task__note"><%= task.note %></p>
             <strong class="task__complete">Completed: <%= task.completed ? "Yes" : "No" %></strong>
           </div>

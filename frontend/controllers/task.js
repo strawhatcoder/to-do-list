@@ -5,7 +5,7 @@ const API_URL = process.env.LOCAL_HOST_API;
 exports.getTasks = async (req, res, next) => {
   try {
     const response = await fetch(`${API_URL}/tasks`);
-    const { message, tasks } = (await response.json())[0];
+    const { tasks } = (await response.json())[0];
     res.render('index', { tasks: tasks })
   } catch (error) {
     throw Error(error.message);
@@ -31,3 +31,13 @@ exports.createTask = async (req, res, next) => {
     throw Error(error.message);
   }
 };
+
+exports.getTask = async (req, res, next) => {
+  const taskId = req.params.taskId;
+  const response = await fetch(`${API_URL}/tasks/${taskId}`);
+  const data = await response.json();
+
+  res.render('task', {
+    task: data.task
+  })
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title><%= task.name %></title>
+  </head>
+
+  <body>
+
+    <div class="task">
+        <h3 class="task__name"><%= task.name %></h3>
+      </a>
+      <p class="task__note"><%= task.note %></p>
+      <strong class="task__complete">Completed: <%= task.completed ? "Yes" : "No" %></strong>
+    </div>
+    <br>
+    <div class="task_actions">
+      <a href="/tasks">
+        <button class="task_action_button" type="button">Go Back</button>
+      </a>
+      <button class="task_action_button" type="button">Edit</button>
+      <button class="task_action_button" type="button">Delete</button>
+    </div>
+
+  </body>
+</html>
