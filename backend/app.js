@@ -2,11 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const multer = require('multer');
 const taskRoutes = require('./routes/tasks');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(multer().none());
 
 app.use('/tasks', taskRoutes);
 
