@@ -6,5 +6,8 @@
 - nodemon (dev)
 - body-parser
 - dotenv
-- ejs
-- node-fetch
+- ejs		(frontend)
+- node-fetch	(frontend)
+- form-data	(frontend)
+- mongoose	(backend)
+- multer 	(backend)
