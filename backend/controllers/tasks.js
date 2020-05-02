@@ -24,4 +24,14 @@ exports.createTask = async (req, res, next) => {
   res.status(201).json({
     message: 'Task Created'
   });
-}
+};
+
+exports.getTask = async (req, res, next) => {
+  const taskId = req.params.taskId;
+  const task = await Task.findById(taskId);
+
+  res.status(302).json({
+    message: 'Fetched Task',
+    task: task
+  })
+};
