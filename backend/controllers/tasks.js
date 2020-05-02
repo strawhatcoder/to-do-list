@@ -35,3 +35,18 @@ exports.getTask = async (req, res, next) => {
     task: task
   })
 };
+
+exports.editTask = async (req, res, next) => {
+  const taskId = req.params.taskId;
+  const { name, note, completed } = req.body;
+
+  const task = await Task.findById(taskId);
+  const updateProperties = {
+    name: name || task.name,
+    note: note || task.note,
+    completed: completed || task.completed
+  }
+
+  await Task.updateOne(task, updateProperties);
+  res.status(200).json({ message: 'Task Updated' });
+};
