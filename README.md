@@ -2,7 +2,7 @@
 
 **Description:**
 
-Simple to-do list built using Node.js, Express.js, MongoDB, and RESTful API. The app has all the CRUD functionality for tasks (add, update, delete).
+Simple to-do list built using Node.js, Express.js, MongoDB, and RESTful API. The app has all the CRUD functionality for tasks (Create, Read, Update, Delete).
 
 **Modules Installed**
 - express
