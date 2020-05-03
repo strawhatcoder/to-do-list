@@ -52,3 +52,10 @@ exports.deleteTask = async (req, res, next) => {
   await Task.deleteOne({ _id: taskId.toString() });
   res.status(200).json({ message: "Task Removed" });
 };
+
+exports.completeTask = async (req, res, next) => {
+  const taskId = req.params.taskId;
+  const task = await Task.findById(taskId);
+  await Task.updateOne(task, { $set: { completed: !task.completed } });
+  res.status(200).json({ message: "Task Complete" });
+};
