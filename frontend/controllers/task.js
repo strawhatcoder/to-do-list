@@ -65,3 +65,11 @@ exports.editTask = async (req, res, next) => {
 
   res.redirect('/tasks');
 };
+
+exports.deleteTask = async (req, res, next) => {
+  const taskId = req.params.taskId;
+  await fetch(`${API_URL}/tasks/${taskId}`, {
+    method: "DELETE"
+  });
+  res.redirect('/tasks');
+};
