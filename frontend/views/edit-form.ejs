@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Edit <%= task.name %></title>
+  </head>
+
+  <body>
+    <div class="task-form">
+      <h1>Edit Task</h1>
+      <form action="/tasks/<%= task._id %>" method="POST">
+        Task Name:
+        <input type="text" name="taskName" id="taskName" value="<%= task.name %>"><br>
+        Note (Optional):
+        <input type="text" name="taskNote" id="taskNote" value="<%= task.note %>"><br><br>
+        <button type="submit">Update Task</button>
+        <a href="/tasks">
+          <button class="task_action_button" type="button">Cancel</button>
+        </a>
+      </form>
+    </div>
+  </body>
+</html>
