@@ -8,6 +8,6 @@ router.post('/new-task', taskController.createTask);
 router.get('/edit-task/:taskId', taskController.getEditTaskForm);
 router.post('/:taskId', taskController.editTask);
 router.get('/remove-task/:taskId', taskController.deleteTask);
-
+router.get('/complete/:taskId', taskController.complete);
 
 module.exports = router;

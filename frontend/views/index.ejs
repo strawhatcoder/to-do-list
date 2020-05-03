@@ -30,6 +30,10 @@
             </a>
             <p class="task__note"><%= task.note %></p>
             <strong class="task__complete">Completed: <%= task.completed ? "Yes" : "No" %></strong>
+            <br><br>
+            <a href="/tasks/complete/<%= task._id %>">
+              <button class="button complete_button"><%= !task.completed ? "Complete" : "Not Complete" %></button>
+            </a>
           </div>
           <hr><br>
         <% }) %>

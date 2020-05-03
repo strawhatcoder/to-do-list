@@ -73,3 +73,11 @@ exports.deleteTask = async (req, res, next) => {
   });
   res.redirect('/tasks');
 };
+
+exports.complete = async (req, res, next) => {
+  const taskId = req.params.taskId;
+  await fetch(`${API_URL}/tasks/complete/${taskId}`, {
+    method: "PUT"
+  })
+  res.redirect('/tasks');
+};
