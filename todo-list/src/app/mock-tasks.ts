@@ -11,7 +11,7 @@ export const TASKS: Task[] = [
     id: 2,
     name: 'Workout',
     note: 'Back Day!',
-    completed: false
+    completed: true
   },
   {
     id: 3,
@@ -23,12 +23,18 @@ export const TASKS: Task[] = [
     id: 4,
     name: 'Walk Dog',
     note: 'Exercise for my little buddy and me',
-    completed: false
+    completed: true
   },
   {
     id: 5,
     name: 'Cook Dinner',
     note: 'Taco Tuesday!',
     completed: false
+  },
+  {
+    id: 6,
+    name: 'Go to Marianos',
+    note: 'Need to buy more yogurt',
+    completed: true
   },
 ]

@@ -1,1 +1,14 @@
-<p>todo-tasks works!</p>
+<div class="container-fluid todo-tasks-title">
+  <h3>To Do</h3>
+</div>
+
+<table class="table table-borderless">
+  <tbody>
+    <tr *ngFor="let task of todoTasks">
+      <th colspan="2">{{task.name}}</th>
+      <td>
+        <button type="button" class="btn btn-success btn-sm">Complete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

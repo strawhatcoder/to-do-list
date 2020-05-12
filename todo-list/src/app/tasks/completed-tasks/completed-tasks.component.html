@@ -1,1 +1,14 @@
-<p>completed-tasks works!</p>
+<div class="container-fluid completed-task-title">
+  <h3>Completed Tasks</h3>
+</div>
+
+<table class="table table-borderless">
+  <tbody>
+    <tr *ngFor="let task of completedTasks">
+      <th colspan="2">{{task.name}}</th>
+      <td>
+        <button type="button" class="btn btn-danger btn-sm">Incomplete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
