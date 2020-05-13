@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Task } from '../../task';
-import { TASKS } from '../../mock-tasks';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-completed-tasks',
@@ -9,16 +9,19 @@ import { TASKS } from '../../mock-tasks';
   styleUrls: ['./completed-tasks.component.css']
 })
 export class CompletedTasksComponent implements OnInit {
-  private completedTasks: Task[] = [];
+  completedTasks: Task[] = [];
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.getCompletedTasks();
   }
 
   getCompletedTasks(): void {
-    this.completedTasks = TASKS.filter(task => task.completed);
+    this.apiService.getTasks().subscribe(data => {
+      let tasks = data[0]['tasks'];
+      this.completedTasks = tasks.filter(task => task.completed);
+    })
   }
 
 }

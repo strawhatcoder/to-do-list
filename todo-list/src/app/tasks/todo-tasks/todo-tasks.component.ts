@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../task';
-import { TASKS } from '../../mock-tasks';
+import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-todo-tasks',
@@ -8,16 +8,19 @@ import { TASKS } from '../../mock-tasks';
   styleUrls: ['./todo-tasks.component.css']
 })
 export class TodoTasksComponent implements OnInit {
-  private todoTasks: Task[] = [];
+  todoTasks: Task[] = [];
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.getIncompleteTasks();
   }
 
   getIncompleteTasks(): void {
-    this.todoTasks = TASKS.filter(task => !task.completed);
+    this.apiService.getTasks().subscribe(data => {
+      let tasks = data[0]['tasks'];
+      this.todoTasks = tasks.filter(task => !task.completed);
+    });
   }
 
 }
