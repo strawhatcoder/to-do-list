@@ -21,15 +21,21 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   // GET tasks
-  getTasks() {
+  getTasks(): Observable<any> {
     return this.http.get<{ message: string, tasks: Task[] }>(this.API_URL);
+  }
+
+  // GET task
+  getTask(id: number): Observable<any> {
+    const taskUrl = `${this.API_URL}/${id}`;
+    return this.http.get<{ message: string, task: Task }>(taskUrl);
   }
 
   // POST task
   addTask({ name, note }): Observable<any> {
-    const postApi = `${this.API_URL}/new-task`;
+    const postUrl = `${this.API_URL}/new-task`;
     const body = JSON.stringify({ name: name, note: note });
-    return this.http.post(postApi, body, this.httpOptions);
+    return this.http.post(postUrl, body, this.httpOptions);
   }
 
 }

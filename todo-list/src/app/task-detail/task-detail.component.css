@@ -1,0 +1,23 @@
+.card-header,
+.card-body,
+.task-actions {
+  text-align: center;
+}
+
+
+.card-header {
+  background-color: white;
+}
+
+.card-body {
+  margin-top: 1rem;
+}
+
+.task-actions {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+button {
+  margin: 5px;
+}

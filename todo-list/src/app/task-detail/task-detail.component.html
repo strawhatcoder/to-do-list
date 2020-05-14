@@ -1,1 +1,18 @@
-<p>task-detail works!</p>
+<div class="row">
+  <div class="col-sm-3 mx-auto">
+    <div class="card">
+      <h4 class="card-header">{{task.name}}</h4>
+
+      <div class="card-body" *ngIf="task.note">
+        <p class="card-text">{{task.note}}</p>
+      </div>
+
+      <div class="task-actions">
+        <button class="btn btn-primary">Edit</button>
+        <button routerLink="/" class="btn btn-info">Go Back</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

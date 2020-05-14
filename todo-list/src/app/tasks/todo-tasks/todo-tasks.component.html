@@ -5,7 +5,7 @@
 <table class="table table-borderless">
   <tbody>
     <tr *ngFor="let task of todoTasks">
-      <th colspan="2">{{task.name}}</th>
+      <th colspan="2"><a routerLink="/{{task._id}}">{{task.name}}</a></th>
       <td>
         <button type="button" class="btn btn-success btn-sm">Complete</button>
       </td>
