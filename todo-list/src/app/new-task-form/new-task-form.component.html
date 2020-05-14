@@ -2,16 +2,17 @@
   <div class="col-sm-3 mx-auto">
     <div class="card">
       <div class="card-body">
-        <form>
+        <form [formGroup]="newTaskForm" (ngSubmit)="addNewTask()">
           <div class="form-group">
             <label>Task Name</label>
-            <input type="text" class="form-control" [formControl]="name">
+            <input type="text" class="form-control" formControlName="name">
           </div>
           <div class="form-group">
             <label>Note (Optional)</label>
-            <input type="text" class="form-control" [formControl]="note">
+            <input type="text" class="form-control" formControlName="note">
           </div>
-          <button class="btn btn-primary" (click)="addNewTask()">Add Task</button>
+          <button type="submit" class="btn btn-primary">Add Task</button>
+          <button class="btn btn-info" (click)="cancel()">Cancel</button>
         </form>
       </div>
     </div>

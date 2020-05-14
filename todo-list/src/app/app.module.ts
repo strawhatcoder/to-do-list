@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,6 +9,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { NewTaskFormComponent } from './new-task-form/new-task-form.component';
 import { CompletedTasksComponent } from './tasks/completed-tasks/completed-tasks.component';
 import { TodoTasksComponent } from './tasks/todo-tasks/todo-tasks.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,9 @@ import { TodoTasksComponent } from './tasks/todo-tasks/todo-tasks.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

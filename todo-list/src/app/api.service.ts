@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   // POST task
-  addTask(name: string, note: string): Observable<any> {
+  addTask({ name, note }): Observable<any> {
     const postApi = `${this.API_URL}/new-task`;
     const body = JSON.stringify({ name: name, note: note });
     return this.http.post(postApi, body, this.httpOptions);
