@@ -13,13 +13,23 @@ import { Task } from './task';
 export class ApiService {
   // Holds our BackEnd API host/url
   private API_URL: string = environment.apiUrl;
-  private tasksArray: Task[] = [];
+
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  }
 
   constructor(private http: HttpClient) { }
 
   // GET tasks
   getTasks() {
     return this.http.get<{ message: string, tasks: Task[] }>(this.API_URL);
+  }
+
+  // POST task
+  addTask(name: string, note: string): Observable<any> {
+    const postApi = `${this.API_URL}/new-task`;
+    const body = JSON.stringify({ name: name, note: note });
+    return this.http.post(postApi, body, this.httpOptions);
   }
 
 }
