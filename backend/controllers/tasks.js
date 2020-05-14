@@ -29,7 +29,7 @@ exports.createTask = async (req, res, next) => {
 exports.getTask = async (req, res, next) => {
   const taskId = req.params.taskId;
   const task = await Task.findById(taskId);
-  res.status(302).json({
+  res.status(200).json({
     message: 'Fetched Task',
     task: task
   })
