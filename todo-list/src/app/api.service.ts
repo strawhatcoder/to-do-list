@@ -38,6 +38,13 @@ export class ApiService {
     return this.http.post(postUrl, body, this.httpOptions);
   }
 
+  // PUT task
+  updateTask({ name, note }, id: number): Observable<any> {
+    const putUrl = `${this.API_URL}/${id}`;
+    const body = JSON.stringify({ name: name, note: note });
+    return this.http.put(putUrl, body, this.httpOptions);
+  }
+
 }
 
 

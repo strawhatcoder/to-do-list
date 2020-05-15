@@ -10,6 +10,7 @@ import { NewTaskFormComponent } from './new-task-form/new-task-form.component';
 import { CompletedTasksComponent } from './tasks/completed-tasks/completed-tasks.component';
 import { TodoTasksComponent } from './tasks/todo-tasks/todo-tasks.component';
 import { AppRoutingModule } from './app-routing.module';
+import { EditTaskFormComponent } from './edit-task-form/edit-task-form.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,14 @@ import { AppRoutingModule } from './app-routing.module';
     TaskDetailComponent,
     NewTaskFormComponent,
     CompletedTasksComponent,
-    TodoTasksComponent
+    TodoTasksComponent,
+    EditTaskFormComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
