@@ -15,14 +15,15 @@ exports.getTasks = async (req, res, next) => {
 exports.createTask = async (req, res, next) => {
   const { name, note } = req.body;
 
-  await Task.create({
+  const task = await Task.create({
     name: name,
     note: note,
     completed: false
   });
 
   res.status(201).json({
-    message: 'Task Created'
+    message: 'Task Created',
+    task: task
   });
 };
 
@@ -43,8 +44,8 @@ exports.editTask = async (req, res, next) => {
     name: name || task.name,
     note: note || task.note,
   }
-  await Task.updateOne(task, updateProperties);
-  res.status(200).json({ message: 'Task Updated' });
+  const updatedTask = await Task.updateOne(task, updateProperties);
+  res.status(200).json({ message: 'Task Updated', task: updatedTask });
 };
 
 exports.deleteTask = async (req, res, next) => {
