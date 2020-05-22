@@ -23,9 +23,7 @@ export class NewTaskFormComponent implements OnInit {
   }
 
   addNewTask(): void {
-    this.apiService.addTask(this.newTaskForm.value).subscribe(data => {
-      console.log(data)
-    });
+    this.apiService.addTask(this.newTaskForm.value);
     this.router.navigate(['/']);
   }
 

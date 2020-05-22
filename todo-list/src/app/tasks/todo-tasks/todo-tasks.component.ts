@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../../task';
-import { ApiService } from '../../api.service';
+import { Subscription } from 'rxjs';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-todo-tasks',
   templateUrl: './todo-tasks.component.html',
   styleUrls: ['./todo-tasks.component.css']
 })
-export class TodoTasksComponent implements OnInit {
-  todoTasks: Task[] = [];
+export class TodoTasksComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+  todoTasks: Task[];
 
   constructor(private apiService: ApiService) { }
 
@@ -17,10 +19,22 @@ export class TodoTasksComponent implements OnInit {
   }
 
   getIncompleteTasks(): void {
-    this.apiService.getTasks().subscribe(data => {
-      let tasks = data[0]['tasks'];
-      this.todoTasks = tasks.filter(task => !task.completed);
-    });
+    this.subscription = this.apiService.getTasks()
+      .subscribe(tasks => {
+        this.todoTasks = tasks.filter(task => !task.completed);
+      })
+  }
+
+  completeTask(id: number): void {
+    this.apiService.completeTask(id);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  removeTask(id: number): void {
+    this.apiService.deleteTask(id);
   }
 
 }

@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ApiService } from '../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Task } from '../task';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-edit-task-form',
   templateUrl: './edit-task-form.component.html',
   styleUrls: ['./edit-task-form.component.css']
 })
-export class EditTaskFormComponent implements OnInit {
+export class EditTaskFormComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+
   editTaskForm = new FormGroup({
     name: new FormControl(''),
     note: new FormControl('')
@@ -28,21 +32,20 @@ export class EditTaskFormComponent implements OnInit {
 
   getTaskInfo(): void {
     const id = this.getTaskId();
-    this.apiService.getTask(id).subscribe(data => {
-      this.editTaskForm.setValue({
-        name: data.task.name,
-        note: data.task.note
+    this.subscription = this.apiService.getTask(id)
+      .subscribe((data: { message: string, task: Task }) => {
+        this.editTaskForm.setValue({
+          name: data.task.name,
+          note: data.task.note
+        })
       })
-    })
   }
 
   updateTask(): void {
     const id = this.getTaskId();
     const formValues = this.editTaskForm.value;
-    this.apiService.updateTask(formValues, id).subscribe(data => {
-      console.log(data);
-    });
-    this.router.navigate(['/'])
+    this.apiService.updateTask(formValues, id);
+    this.router.navigate(['/']);
   }
 
   getTaskId(): number {
@@ -51,6 +54,10 @@ export class EditTaskFormComponent implements OnInit {
 
   cancel(): void {
     this.location.back();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

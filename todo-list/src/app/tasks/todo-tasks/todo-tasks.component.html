@@ -1,13 +1,14 @@
-<div class="container-fluid todo-tasks-title">
+<div *ngIf="todoTasks.length > 0" class="container-fluid todo-tasks-title">
   <h3>To Do</h3>
 </div>
 
-<table class="table table-borderless">
+<table *ngIf="todoTasks.length > 0" class="table table-borderless">
   <tbody>
     <tr *ngFor="let task of todoTasks">
       <th colspan="2"><a routerLink="/{{task._id}}">{{task.name}}</a></th>
-      <td>
-        <button type="button" class="btn btn-success btn-sm">Complete</button>
+      <td class="action-buttons">
+        <button type="button" class="btn btn-success btn-sm" (click)="completeTask(task._id)">Complete</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeTask(task._id)">Remove</button>
       </td>
     </tr>
   </tbody>

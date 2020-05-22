@@ -1,13 +1,13 @@
-<div class="container-fluid completed-task-title">
-  <h3>Completed Tasks</h3>
+<div *ngIf="completedTasks.length > 0" class="container-fluid completed-task-title">
+  <h3>Completed</h3>
 </div>
 
-<table class="table table-borderless">
+<table *ngIf="completedTasks.length > 0" class="table table-borderless">
   <tbody>
     <tr *ngFor="let task of completedTasks">
-      <th colspan="2">{{task.name}}</th>
+      <th><a routerLink="/{{task._id}}">{{task.name}}</a></th>
       <td>
-        <button type="button" class="btn btn-danger btn-sm">Incomplete</button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="removeTask(task._id)">Remove</button>
       </td>
     </tr>
   </tbody>

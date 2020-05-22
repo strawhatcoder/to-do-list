@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../task';
 import { ApiService } from '../api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task-detail',
   templateUrl: './task-detail.component.html',
   styleUrls: ['./task-detail.component.css']
 })
-export class TaskDetailComponent implements OnInit {
+export class TaskDetailComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   task: any;
 
   constructor(
     private apiService: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
-    this.task = {};
+    this.task;
   }
 
   ngOnInit(): void {
@@ -24,9 +27,18 @@ export class TaskDetailComponent implements OnInit {
 
   getTask(): void {
     const id = this.route.snapshot.params.taskId;
-    this.apiService.getTask(id).subscribe(data => {
-      this.task = data.task;
-    })
+    this.subscription = this.apiService.getTask(id)
+      .subscribe((data: { message: string, task: Task }) => {
+        this.task = data.task;
+      })
+  }
+
+  cancel(): void {
+    this.router.navigate(['/']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
